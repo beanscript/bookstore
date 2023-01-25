@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bookstore</title>
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8" />
+</head>
+<body>
+<h1>My books</h1>
+	<table>
+		<tr th:each="olio : ${booksList}">
+			<td th:text="${olio.title}"></td>
+		</tr>
+	</table>
+	
+	<h1>Add book</h1>
+	<form action="#" th:action="@{/index}" th:object="${index}" method="post">
+		<p>name: <input type="text" th:field="*{title}" /> </p>
+		<p>
+			<input type="submit" value="Lähetä" />
+		</p>
+	</form>
+	
+</body>
+</html>
