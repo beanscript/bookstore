@@ -18,10 +18,11 @@ import elia.Bookstore.domain.BookRepository;
 public class BookController {
 	@Autowired
 	private BookRepository repository;
-	@RequestMapping(value= {"/", "/studentlist"})
-	public String studentList(Model model) {
-	model.addAttribute("students", repository.findAll());
-	return "studentlist";
+	
+	@RequestMapping(value = { "/", "/booklist" })
+	public String bookList(Model model) {
+		model.addAttribute("books", repository.findAll());
+		return "bookList";
 	}
 
 	private ArrayList<Book> books = new ArrayList<>();
@@ -38,5 +39,6 @@ public class BookController {
 		books.add(title);
 		return "redirect:/index";
 	}
+	
 	
 }
