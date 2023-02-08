@@ -28,9 +28,9 @@ public class BookstoreApplication {
 		return (args) -> {
 			log.info("tallennetaan pari demo kirjaa");
 
-			Book kirja1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, 97800444, 22.99);
-			Book kirja2 = new Book("Good Omens", "Neil Gaiman, Terry Pratchett", 1990, 978006085, 26.00);
-			Book kirja3 = new Book("Le Fantôme de l'Opéra", "Gaston Leroux", 1910, 978087905, 12.99);
+			Book kirja1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "97800444", 22.99);
+			Book kirja2 = new Book("Good Omens", "Neil Gaiman, Terry Pratchett", 1990, "978006085", 26.00);
+			Book kirja3 = new Book("Le Fantôme de l'Opéra", "Gaston Leroux", 1910, "978087905", 12.99);
 			bookRepository.save(kirja1);
 			bookRepository.save(kirja2);
 			bookRepository.save(kirja3);
