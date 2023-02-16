@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import elia.Bookstore.domain.Book;
 import elia.Bookstore.domain.BookRepository;
+import elia.Bookstore.domain.Category;
+import elia.Bookstore.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -24,16 +26,23 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository catrepository) {
 		return (args) -> {
 			log.info("tallennetaan pari demo kirjaa");
+			
+			catrepository.save(new Category("Fantasy"));
+			catrepository.save(new Category("Comedy"));
+			catrepository.save(new Category("Horror"));
+			catrepository.save(new Category("Gothic fiction"));
 
-			Book kirja1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "97800444", 22.99);
-			Book kirja2 = new Book("Good Omens", "Neil Gaiman, Terry Pratchett", 1990, "978006085", 26.00);
-			Book kirja3 = new Book("Le Fantôme de l'Opéra", "Gaston Leroux", 1910, "978087905", 12.99);
-			bookRepository.save(kirja1);
-			bookRepository.save(kirja2);
-			bookRepository.save(kirja3);
+			bookRepository.save(new Book("The Hobbit", "J.R.R. Tolkien", 1937, "97800444", 22.99, catrepository.findByNameIgnoreCase("Fantasy").get(0)));
+			bookRepository.save(new Book("Good Omens", "Neil Gaiman, Terry Pratchett", 1990, "978006085", 26.00, catrepository.findByNameIgnoreCase("Comedy").get(0)));
+			bookRepository.save(new Book("Le Fantôme de l'Opéra", "Gaston Leroux", 1910, "978087905", 12.99, catrepository.findByNameIgnoreCase("Gothic Fiction").get(0)));
+			
+			/*log.info("get all books");
+			for (Book book : bookRepository.findAll()) {
+				log.info(book.toString());
+			}*/
 
 		};
 	}
